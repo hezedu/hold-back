@@ -7,16 +7,20 @@ button{font-size: 1.3em;}
   height: 400px; width: 400px; background-color: lightgoldenrodyellow;
   text-align: center; line-height: 400px; font-size: 30px;position: relative;
 }
+.tolib{
+  position: absolute; top: 5px; right: 5px;
+}
 </style>
 </head>
 <body>
-<div style="text-align:center">
+<div style="text-align:center;position:relative;">
 <button id='fast'>fast</button>
 <button id='medium'>medium</button>
 <button id='slow'>slow</button>
+<a class="tolib" href="https://github.com/hezedu/async-pool">github</a>
 </div>
 <hr/>
-<div style="text-align:center">
+<div style="text-align:center;">
   <div class='show-wrap'>
     <h2>Pool</h2>
   <div id="show" class='show'></div>
