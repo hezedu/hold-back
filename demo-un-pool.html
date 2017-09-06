@@ -1,0 +1,51 @@
+<html>
+<head>
+<style>
+button{font-size: 1.3em;}
+#show{
+  height: 400px; width: 400px; background-color: lightgoldenrodyellow;
+  text-align: center; line-height: 400px; font-size: 30px;
+}
+</style>
+</head>
+<body>
+<button id='fast'>fast</button>
+<button id='medium'>medium</button>
+<button id='slow'>slow</button>
+
+<hr/>
+<div id="show"></div>
+<script src='index.js'></script>
+<script>
+(function(){
+  var pool = new Pool();
+
+  function $id(id){
+    return document.getElementById(id)
+  }
+  var fast = $id('fast')
+  var slow = $id('slow')
+  var medium = $id('medium')
+  var show = $id('show')
+  var active = {style: {}};
+  function listenG(m, id){
+    return function(){
+      active.style.backgroundColor = '';
+      this.style.backgroundColor = 'dodgerblue';
+      active = this;
+      setTimeout(function(){
+
+        show.innerHTML = id + ' : ' + m + 'ms';
+      }, m)
+    }
+  }
+
+  fast.addEventListener('click', listenG(100, 'fast'))
+  medium.addEventListener('click', listenG(1000, 'medium'))
+  slow.addEventListener('click', listenG(3000, 'slow'))
+  fast.click();
+})()
+
+</script>
+</body>
+</html>
