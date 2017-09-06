@@ -2,19 +2,31 @@
 <head>
 <style>
 button{font-size: 1.3em;}
-#show{
+.show-wrap{ display: inline-block;margin: 0 5px}
+.show{
   height: 400px; width: 400px; background-color: lightgoldenrodyellow;
-  text-align: center; line-height: 400px; font-size: 30px;
+  text-align: center; line-height: 400px; font-size: 30px;position: relative;
 }
 </style>
 </head>
 <body>
+<div style="text-align:center">
 <button id='fast'>fast</button>
 <button id='medium'>medium</button>
 <button id='slow'>slow</button>
-
+</div>
 <hr/>
-<div id="show"></div>
+<div style="text-align:center">
+  <div class='show-wrap'>
+    <h2>Pool</h2>
+  <div id="show" class='show'></div>
+  </div><div class='show-wrap'>
+    <h2>Un Pool</h2>
+  <div id="show-un-pool" class='show'></div>
+  </div>
+  <hr/>
+  <div id="detail"></div>
+</div>
 <script src='index.js'></script>
 <script>
 (function(){
@@ -27,17 +39,30 @@ button{font-size: 1.3em;}
   var slow = $id('slow')
   var medium = $id('medium')
   var show = $id('show')
+  var showUnPool = $id('show-un-pool')
+  var detail = $id('detail')
   var active = {style: {}};
+  function showDetail(){
+    var _pool = pool.pool;
+    var text = ''
+    for(var i in _pool){
+      text += i + ' is Requesting' + '<br/>';
+    }
+    detail.innerHTML = text
+  }
   function listenG(m, id){
     return function(){
       active.style.backgroundColor = '';
       this.style.backgroundColor = 'dodgerblue';
       active = this;
-      const onEnd = pool.start(id);
+      pool.start(id);
+      showDetail()
       setTimeout(function(){
+        showUnPool.innerHTML = id + ' : ' + m + 'ms';
         if(pool.end(id)){
           show.innerHTML = id + ' : ' + m + 'ms';
         }
+        showDetail()
       }, m)
     }
   }
