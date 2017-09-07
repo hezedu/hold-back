@@ -1,0 +1,22 @@
+{
+  "name": "hold-back",
+  "version": "1.0.0",
+  "description": "same render problem.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hezedu/hold-back.git"
+  },
+  "keywords": [
+    "async"
+  ],
+  "author": "Du Wei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hezedu/hold-back/issues"
+  },
+  "homepage": "https://github.com/hezedu/hold-back#readme"
+}
