@@ -3,9 +3,15 @@
 ## Install
 `npm install hold-back`
 ## API
-### 生成实例
+### 引用
+COMMONJS:
 ```js
 var HoldBack = require('hold-back');
+```
+`./dist`文件夹下文件支持`AMD`加载。直接**src**的话，会暴露一个全局变量：`HoldBack`
+
+### 生成实例
+```js
 var holdBack = new HoldBack();
 ```
 ### holdBack.start(key)

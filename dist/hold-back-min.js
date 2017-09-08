@@ -1,0 +1,1 @@
+!function(){function t(){this.pool={},this.currKey=null}t.prototype.start=function(t){this.currKey=t;var n=this.pool;return!!n[t]||(n[t]=!0,!1)},t.prototype.end=function(t){return delete this.pool[t],t===this.currKey},"function"==typeof define&&define.amd?define(function(){return t}):this.HoldBack=t}();
