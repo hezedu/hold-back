@@ -7,6 +7,10 @@ button{font-size: 1.3em;}
   height: 400px; width: 400px; background-color: lightgoldenrodyellow;
   text-align: center; line-height: 400px; font-size: 30px;position: relative;
 }
+.chaos{
+  width: 100px;margin-left: -100px;position: relative; left: 200px;
+  background-color: #333;color:#fff;
+}
 .tolib{
   position: absolute; top: 5px; right: 5px;
 }
@@ -15,66 +19,97 @@ button{font-size: 1.3em;}
 <body>
 <div style="text-align:center;position:relative;">
 <button id='fast'>fast</button>
-<button id='medium'>medium</button>
 <button id='slow'>slow</button>
+<button id='chaos' class="chaos">chaos</button>
 <a class="tolib" href="https://github.com/hezedu/hold-back">github</a>
 </div>
 <hr/>
 <div style="text-align:center;">
   <div class='show-wrap'>
-    <h2>Pool</h2>
-  <div id="show" class='show'></div>
+    <h2>Hold Back</h2>
+  <div id="show" class='show'>
+  </div>
+
   </div><div class='show-wrap'>
-    <h2>Un Pool</h2>
-  <div id="show-un-pool" class='show'></div>
+    <h2>Un Hold Back</h2>
+  <div id="show-un-hold-back" class='show'>
+  </div>
   </div>
   <hr/>
   <div id="detail"></div>
 </div>
-<script src='/hold-back/index.js'></script>
+<!-- <script src='/hold-back/index.js'></script> -->
+<script src='index.js'></script>
 <script>
 (function(){
-  var pool = new HoldBack();
+  var holdBack = new HoldBack();
 
   function $id(id){
     return document.getElementById(id)
   }
   var fast = $id('fast')
   var slow = $id('slow')
-  var medium = $id('medium')
+  var chaos = $id('chaos')
   var show = $id('show')
-  var showUnPool = $id('show-un-pool')
-  var detail = $id('detail')
+  var showUnHoldBack = $id('show-un-hold-back')
+  var detail = $id('detail');
+
   var active = {style: {}};
   function showDetail(){
-    var _pool = pool.pool;
-    var text = ''
-    for(var i in _pool){
+    var pool = holdBack.pool;
+    var text = '';
+    for(var i in pool){
       text += i + ' is Requesting' + '<br/>';
     }
     detail.innerHTML = text
   }
+
+  function render(dom, id, m){
+    dom.innerHTML = id + ' : ' + m + 'ms';
+  }
+
+  function holdBackHandle(m, id){
+    var isAlreadyStart = holdBack.start(id);
+    if(isAlreadyStart){
+      return;
+    }
+
+    setTimeout(function(){
+      var isExpect = holdBack.end(id);
+      if(isExpect){
+        render(show, id, m);
+      }
+    }, m)
+  }
+
+  function unHoldBackHandle(m, id){
+    setTimeout(function(){
+      render(showUnHoldBack, id, m);
+    }, m)
+  }
+
   function listenG(m, id){
     return function(){
       active.style.backgroundColor = '';
       this.style.backgroundColor = 'dodgerblue';
       active = this;
-      pool.start(id);
-      showDetail()
-      setTimeout(function(){
-        showUnPool.innerHTML = id + ' : ' + m + 'ms';
-        if(pool.end(id)){
-          show.innerHTML = id + ' : ' + m + 'ms';
-        }
-        showDetail()
-      }, m)
+
+      holdBackHandle(m, id);
+      unHoldBackHandle(m, id);
+
     }
   }
 
   fast.addEventListener('click', listenG(100, 'fast'))
-  medium.addEventListener('click', listenG(1000, 'medium'))
-  slow.addEventListener('click', listenG(3000, 'slow'))
-  fast.click();
+  slow.addEventListener('click', listenG(1000, 'slow'))
+  chaos.addEventListener('click', function(){
+    slow.click();
+    setTimeout(function(){
+      fast.click();
+    }, 500);
+  })
+  chaos.click();
+
 })()
 
 </script>

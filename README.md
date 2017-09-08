@@ -1,5 +1,5 @@
 # hold-back
-Demo https://hezedu.github.io/hold-back/
+解决多个异步数据同一个容器渲染混乱的问题。该问题详见： https://hezedu.github.io/hold-back/
 ## Install
 `npm install hold-back`
 ## API
@@ -11,41 +11,40 @@ var holdBack = new HoldBack();
 ### holdBack.start(key)
 异步流开始时使用.
 
-`key` Number或String, 异步流的唯一标实.
+`key` ___Number___或___String___, 异步流的唯一标实.
 
-  **return** Boolean<br/>
-    true 表示当前异步流已存在.<br/>
-    false 表示当前异步流是新创建的.
-    
+  **return** ___Boolean___<br/>
+    `true` 表示当前异步流已存在.<br/>
+    `false` 表示当前异步流是新创建的.
+
 ### holdBack.end(key)
 异步流结束时使用.跟`holdBack.start(key)`对应.
 
-`key` Number或String, 异步流的唯一标实.
+`key` ___Number___或___String___, 异步流的唯一标实.
 
-  **return** Boolean<br/>
-    true 表示当前异步流**是你期望的**.<br/>
-    false 表示当前异步流不是你期望的.
+  **return** ___Boolean___<br/>
+    `true` 表示当前异步流**是你期望的**.<br/>
+    `false` 表示当前异步流不是你期望的.
 
 ## 示例
 ```js
-var dom = document.getElementById('someId');
 var HoldBack = require('hold-back');
 var holdBack = new HoldBack();
 
-var key = 'first';
-
-var isAlreadyStart = holdBack.start(key);
-if(isAlreadyStart){
-  //你可以在这阻止, 防止重复加载.
-  return;
+function asyncLog(key, ms){
+  var isAlreadyStart = holdBack.start(key);
+  if(isAlreadyStart){
+    return; //阻止重复加载.
+  }
+  setTimeout(() => {
+    var isExpect = holdBack.end(key);
+    if(isExpect){
+      console.log('key', key);
+     }
+    }, ms);
 }
+asyncLog('slow', 1000);
+asyncLog('fast', 100);
 
-setTimeout(() => {
-
-  var isHope = holdBack.end(key);
-  if(isHope){
-    dom.innerHTML = key;
-   }
-   
-  }, 1000);
+// only log: fast
 ```
