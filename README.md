@@ -28,15 +28,18 @@ var holdBack = new HoldBack();
 
 ## 示例
 ```js
-var dom = document.getElementById('someId')
+var dom = document.getElementById('someId');
 var HoldBack = require('hold-back');
 var holdBack = new HoldBack();
+
 var key = 'first';
+
 var isAlreadyStart = holdBack.start(key);
 if(isAlreadyStart){
   //你可以在这阻止, 防止重复加载.
   return;
 }
+
 setTimeout(() => {
   var isMyHope = holdBack.end(key);
   if(isMyHope){
