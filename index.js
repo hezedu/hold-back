@@ -10,13 +10,14 @@ HoldBack.prototype.start = function(key){
     return true;
   }
   pool[key] = true;
+  return false;
 }
 
 HoldBack.prototype.end = function(key){
   var pool = this.pool;
   delete(pool[key]);
   if(key !== this.currKey){
-    return;
+    return false;
   }
   return true;
 }
