@@ -41,8 +41,8 @@ if(isAlreadyStart){
 }
 
 setTimeout(() => {
-  var isMyHope = holdBack.end(key);
-  if(isMyHope){
+  var isHope = holdBack.end(key);
+  if(isHope){
     dom.innerHTML = key;
   }, 1000);
 ```
