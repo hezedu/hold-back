@@ -17,7 +17,7 @@ var holdBack = new HoldBack();
 ### holdBack.start(key)
 异步流开始时使用.
 
-`key` ___Number___或___String___, 异步流的唯一标实.
+`key` ___Number___ 或 ___String___ , 异步流的唯一标实.
 
   **return** ___Boolean___<br/>
     `true` 表示当前异步流已存在.<br/>
@@ -26,7 +26,7 @@ var holdBack = new HoldBack();
 ### holdBack.end(key)
 异步流结束时使用.跟`holdBack.start(key)`对应.
 
-`key` ___Number___或___String___, 异步流的唯一标实.
+`key` ___Number___ 或 ___String___ , 异步流的唯一标实.
 
   **return** ___Boolean___<br/>
     `true` 表示当前异步流**是你期望的**.<br/>
