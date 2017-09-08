@@ -41,8 +41,11 @@ if(isAlreadyStart){
 }
 
 setTimeout(() => {
+
   var isHope = holdBack.end(key);
   if(isHope){
     dom.innerHTML = key;
-  }, 1000);
+   }
+   
+  }, 1000);
 ```
