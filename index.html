@@ -1,22 +1,25 @@
 <html>
 <head>
-<style>
-button{font-size: 1.3em;}
-.show-wrap{ display: inline-block;margin: 0 5px}
-.show{
-  height: 400px; width: 400px; background-color: lightgoldenrodyellow;
-  text-align: center; line-height: 400px; font-size: 30px;position: relative;
-}
-.chaos{
-  width: 100px;margin-left: -100px;position: relative; left: 200px;
-  background-color: #333;color:#fff;
-}
-.tolib{
-  position: absolute; top: 5px; right: 5px;
-}
-</style>
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+ <link rel="shortcut icon" href="https://avatars1.githubusercontent.com/u/8508437?v=4&s=40" />
+  <style>
+  button{font-size: 1.3em;}
+  .show-wrap{ display: inline-block;margin: 0 5px}
+  .show{
+    height: 400px; width: 400px; background-color: lightgoldenrodyellow;
+    text-align: center; line-height: 400px; font-size: 30px;position: relative;
+  }
+  .chaos{
+    width: 100px;margin-left: -100px;position: relative; left: 200px;
+    background-color: #333;color:#fff;
+  }
+  .tolib{
+    position: absolute; top: 5px; right: 5px;
+  }
+  </style>
 </head>
 <body>
+  
 <div style="text-align:center;position:relative;">
 <button id='fast'>fast</button>
 <button id='slow'>slow</button>
@@ -40,10 +43,10 @@ button{font-size: 1.3em;}
 </div>
 <script src='dist/hold-back-min.js'></script>
 <!-- <script src='index.js'></script> -->
+  
 <script>
 (function(){
   var holdBack = new HoldBack();
-
   function $id(id){
     return document.getElementById(id)
   }
@@ -109,9 +112,8 @@ button{font-size: 1.3em;}
     }, 500);
   })
   chaos.click();
-
 })()
-
 </script>
+  
 </body>
 </html>
